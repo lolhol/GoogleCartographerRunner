@@ -1,0 +1,8 @@
+services:
+  google-cartographer-runner:
+    build: .
+    volumes:
+      - .:/mnt
+    ports:
+      - "8080:8080"
+    entrypoint: "sleep inf"

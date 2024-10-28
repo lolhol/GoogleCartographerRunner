@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.pwrup'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url 'https://repo.maven.apache.org/maven2'
+        allowInsecureProtocol = true // Allows HTTP, not secure
+    }
+}
+
+dependencies {
+    implementation files('libs/gson-2.10.1.jar')
+    implementation files('libs/GooglePotato.jar')
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task run(type: JavaExec) {
+    mainClass = 'org.pwrup.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}

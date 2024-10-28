@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+  "name": "Existing Dockerfile",
+  "dockerComposeFile": "../compose.yml",
+  "service": "google-cartographer-runner",
+  "workspaceFolder": "/mnt",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Run commands after the container is created.
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y clangd gcc g++ make cmake libeigen3-dev && sudo apt-get install libgtest-dev",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools", // C++ extension
+        "llvm-vs-code-extensions.vscode-clangd", // Clangd extension
+        "ms-vscode.cmake-tools", // CMake Tools extension for CMake support
+        "vscjava.vscode-java-pack"
+      ],
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "default",
+        "C_Cpp.default.intelliSenseMode": "clang-x64",
+        "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+        "C_Cpp.default.includePath": [
+          "${workspaceFolder}/**",
+          "/usr/include",
+          "/usr/local/include",
+          "/usr/include/eigen3"
+        ],
+        "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+        "cmake.configureOnOpen": true, // Automatically run CMake configure when opening the folder
+        "cmake.generator": "Unix Makefiles" // Ensure CMake uses the correct generator
+      }
+    }
+  }
+
+  // Uncomment to connect as an existing user other than the container default.
+  // More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "devcontainer"
+}
