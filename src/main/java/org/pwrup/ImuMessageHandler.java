@@ -31,7 +31,7 @@ public class ImuMessageHandler implements HttpHandler {
 
             Imu imuMsg = gson.fromJson(body, Imu.class);
 
-            potato.addIMUData(imuMsg.time, imuMsg.name, imuMsg.linear_acceleration, imuMsg.angularVelocity);
+            potato.addIMUData(imuMsg.time, imuMsg.name, imuMsg.linear_acceleration, imuMsg.angular_velocity);
 
             exchange.sendResponseHeaders(200, 0);
             try (OutputStream os = exchange.getResponseBody()) {

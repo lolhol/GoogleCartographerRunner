@@ -42,6 +42,7 @@ public class Main {
 
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", 8080), 0);
         server.createContext("/lidar-msg", new LidarMessageHandler(potato));
+        server.createContext("/imu-msg", new ImuMessageHandler(potato));
         server.createContext("/get-map", new GetMapMessageHandler(potato));
 
         server.start();
